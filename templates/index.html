@@ -7,8 +7,10 @@
     {% tailwind_css %}
 </head>
 <body>
-    {% for project in projects %}
-    <p>{{ project.name }}</p>
-    {% endfor %}
+    {% if projects %}
+        {% for project in projects %}
+        <p>{{ project.name }}</p>
+        {% endfor %}
+    {% endif %}
 </body>
 </html>
