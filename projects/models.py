@@ -5,7 +5,7 @@ class Category(BaseModel):
     category_name = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, unique=True, null=True,  blank=True)
     category_description = models.TextField()
-    category_image = models.ImageField(upload_to="categories")
+    category_image = models.ImageField(upload_to="images/categories")
 
     def __str__(self):
         return self.category_name
@@ -21,7 +21,7 @@ class Product(BaseModel):
         return self.name
 
 class ProductImage(BaseModel):
-    image = models.ImageField(upload_to="product")
+    image = models.ImageField(upload_to="images/products")
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="product_images")
 
     def __str__(self):
