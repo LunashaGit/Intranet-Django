@@ -15,14 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from intranet.views import index
-from account.views import register, login
-import account
+import account.views
+import intranet.views
 
 urlpatterns = [
     path("__reload__/", include("django_browser_reload.urls")),
     path("admin/", admin.site.urls),
-    path("", index),
-    path("register/", register),
-    path("login/", account.views.login),
+    path("", intranet.views.index, name="index"),
+    path("register/", account.views.register, name="register"),
+    path("login/", account.views.login, name="login"),
+    path("logout/", account.views.logout, name="logout"),
 ]
