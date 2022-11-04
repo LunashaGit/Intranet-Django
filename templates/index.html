@@ -7,10 +7,4 @@
     {% tailwind_css %}
 </head>
 <body>
-    {% if projects %}
-        {% for project in projects %}
-        <p>{{ project.name }}</p>
-        {% endfor %}
-    {% endif %}
-</body>
-</html>
+    {% block poll %}{% endblock %}

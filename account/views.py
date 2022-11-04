@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 # Create your views here.
 
 def login(request):
-    return render(request, 'account/login.html')
+    return render(request, 'accounts/login.html')
 
 def register(request):
     if request.method == 'POST':
@@ -41,4 +41,4 @@ def register(request):
             messages.error(request, 'Passwords do not match')
             return redirect('register')
 
-    return render(request, 'account/register.html')
+    return render(request, 'accounts/register.html')
