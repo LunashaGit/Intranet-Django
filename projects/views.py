@@ -2,7 +2,6 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from .models import Product
 from .models import Category
-from .forms import UploadImage
 # Create your views here.
 
 def index(request):
@@ -15,11 +14,12 @@ def create(request):
         slug = request.POST['slug']
         category = Category.objects.get(category_name=request.POST['category'])
         product_description = request.POST['product_description']
+        product_image = request.FILES['product_image']
         if name == '':
             messages.error(request, 'Please add a title')
             return redirect('create')
         else:
-            project = Product(name=name, description=description, slug=slug, category=category, product_description=product_description)
+            project = Product.objects.create(name=name, description=description, slug=slug, category=category, product_description=product_description, product_image=product_image)
             project.save()
             messages.success(request, 'Project created')
             return redirect('index')
@@ -42,10 +42,5 @@ def createCategory(request):
             messages.success(request, 'Category created')
             return redirect('index')
 
-
-
-
-
-
-
     return render(request, 'projects/createCategory.html')
+
