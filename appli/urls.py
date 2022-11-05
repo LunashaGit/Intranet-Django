@@ -30,5 +30,6 @@ urlpatterns = [
     path("logout/", account.views.logout, name="logout"),
     path("create/", projects.views.create, name="create"),
     path("create_category/", projects.views.createCategory, name="create_category"),
+    path("create_ticket/", projects.views.createTicket, name="create_ticket"),
     #path("project/<int:project_id>/", projects.views.project, name="project"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
