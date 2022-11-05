@@ -13,10 +13,13 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 import account.views
 import intranet.views
+import projects.views
 
 urlpatterns = [
     path("__reload__/", include("django_browser_reload.urls")),
@@ -25,4 +28,7 @@ urlpatterns = [
     path("register/", account.views.register, name="register"),
     path("login/", account.views.login, name="login"),
     path("logout/", account.views.logout, name="logout"),
-]
+    path("create/", projects.views.create, name="create"),
+    path("create_category/", projects.views.createCategory, name="create_category"),
+    #path("project/<int:project_id>/", projects.views.project, name="project"),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

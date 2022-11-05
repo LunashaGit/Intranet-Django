@@ -1,11 +1,13 @@
+from django.core.validators import validate_image_file_extension
 from django.db import models
 from base.models import BaseModel
+import uuid
 
 class Category(BaseModel):
     category_name = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, unique=True, null=True,  blank=True)
     category_description = models.TextField()
-    category_image = models.ImageField(upload_to="images/categories")
+    category_image = models.ImageField(upload_to='category_images', blank=True, null=True, validators=[validate_image_file_extension])
 
     def __str__(self):
         return self.category_name
