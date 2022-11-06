@@ -5,7 +5,7 @@
     <h1 class="text-5xl">
     Create Project
     </h1>
-    <form method="post" enctype="multipart/form-data" class="flex flex-col gap-8 justify-center content-center text-center">
+    <form method="post" enctype="multipart/form-data" class="flex flex-col gap-8 justify-center content-center text-center" autocomplete="off">
         {% csrf_token %}
         {{ form.as_p }}
         <div class="form-group flex flex-col gap-2">

@@ -8,10 +8,9 @@
   <ul class="flex flex-row gap-8">
     {% for ticket in tickets %}
       <li class="flex flex-col justify-center content-center text-center">
+          <img src="/media/ticket.jpg" alt="image" class="max-w-xxs max-h-xxs block mx-auto">
         <a href="{{ ticket.slug }}">{{ ticket.name }}</a>
         <p>Projet : {{ ticket.product }}</p>
-        <p>Utilisateur :{{ ticket.user }}</p>
-        <p>Desc : {{ ticket.description }}</p>
         <p>Status :
             {% if ticket.status == True %}
                 Ouvert

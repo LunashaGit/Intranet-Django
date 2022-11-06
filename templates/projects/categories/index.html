@@ -8,7 +8,7 @@
     <ul class="flex flex-row gap-8">
     {% for category in categories %}
       <li class="flex flex-col justify-center content-center text-center">
-        <img class="max-w-xs" src="/media/{{ category.category_image }}" alt="image">
+        <img class="max-w-xxs max-h-xxs block mx-auto" src="/media/{{ category.category_image }}" alt="image">
         <a href="{{ category.slug }}">{{ category.category_name }}</a>
         <p>Description : {{ category.category_description }}</p>
       </li>

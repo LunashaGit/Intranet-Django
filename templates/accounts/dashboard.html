@@ -7,8 +7,9 @@
 {% if tickets %}
   <ul class="flex flex-row gap-8">
     {% for ticket in tickets %}
-      <li class="flex flex-col justify-center content-center text-center gap-8">
-        <a href="{% url 'byID_ticket' ticket.slug %}">Name : {{ ticket.name }}</a>
+      <li class="flex flex-col justify-center content-center text-center">
+          <img src="/media/ticket.jpg" alt="image" class="max-w-xxs max-h-xxs block mx-auto">
+          <a href="{% url 'byID_ticket' ticket.slug %}">Name : {{ ticket.name }}</a>
         <p>Projet : {{ ticket.product }}</p>
         <p>Description : {{ ticket.description }}</p>
         <p>Status :
