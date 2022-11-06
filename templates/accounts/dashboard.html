@@ -7,10 +7,12 @@
 {% if tickets %}
   <ul class="flex flex-row gap-8">
     {% for ticket in tickets %}
-      <li class="flex flex-col justify-center content-center text-center">
+      <li class="flex flex-col justify-center content-center text-center  p-4 bg-shrine-pink-100 shadow-lg shadow-black-500/40">
           <img src="/media/ticket.jpg" alt="image" class="max-w-xxs max-h-xxs block mx-auto">
           <a href="{% url 'byID_ticket' ticket.slug %}">Name : {{ ticket.name }}</a>
-        <p>Projet : {{ ticket.product }}</p>
+          <div class="flex flex-col justify-center text-center items-center my-4">
+
+          <p>Projet : {{ ticket.product }}</p>
         <p>Description : {{ ticket.description }}</p>
         <p>Status :
             {% if ticket.status == True %}
@@ -19,6 +21,7 @@
                 Fermé
             {% endif %}
         </p>
+      </div>
       </li>
     {% endfor %}
   </ul>

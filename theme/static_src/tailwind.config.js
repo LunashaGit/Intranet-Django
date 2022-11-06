@@ -42,7 +42,16 @@ module.exports = {
         '../../**/*.py'
     ],
     theme: {
-        extend: {},
+        extend: {
+            fontFamily: {
+                'roboto': ['Roboto', 'sans-serif'],
+            },
+            colors: {
+                'shrine-pink-100': '#FEDBD0',
+                'shrine-pink-50': '#FEEAE6',
+
+            }
+        },
     },
     plugins: [
         /**
