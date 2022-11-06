@@ -1,32 +1,21 @@
 <!-- extends index -->
 {% extends 'index.html' %}
 {% block poll %}
-<section class="section-conten padding-y" style="min-height:84vh">
-        <div class="card mx-auto" style="max-width: 380px; margin-top:100px;">
-          <div class="card-body">
+<section class="block max-w-xs mx-auto ">
+<div class="flex flex-col gap-8 justify-center items-center">
           <h4 class="card-title mb-4">Sign in</h4>
-          <form method="POST">
+          <form method="POST" class="flex flex-col gap-8 justify-center content-center text-center">
               {% csrf_token %}
-          <div class="form-group">
-                 <input name="email" class="form-control" placeholder="Email" type="text">
-              </div> <!-- form-group// -->
-              <div class="form-group">
-                <input name="password" class="form-control" placeholder="Password" type="password">
-              </div> <!-- form-group// -->
-
-              <div class="form-group">
-                  <a href="#" class="float-right">Forgot password?</a>
-                <label class="float-left custom-control custom-checkbox"> <input type="checkbox" class="custom-control-input" checked=""> <div class="custom-control-label"> Remember </div> </label>
-              </div> <!-- form-group form-check .// -->
-              <div class="form-group">
-                  <button type="submit" class="btn btn-primary btn-block"> Login  </button>
-              </div> <!-- form-group// -->
+              <div class="form-group flex flex-col gap-2">
+                <label for="email">Email</label>
+                <input name="email" class="form-control" placeholder="Email" type="text" id="email">
+              </div>
+              <div class="form-group flex flex-col gap-2">
+                <label for="password">Password</label>
+                <input name="password" class="form-control" placeholder="Password" type="password" id="password">
+              </div>
+            <button type="submit">Login</button>
           </form>
-          </div> <!-- card-body.// -->
-        </div> <!-- card .// -->
-
-         <p class="text-center mt-4">Don't have account? <a href="#">Sign up</a></p>
-         <br><br>
-
-    </section>
+</div>
+</section>
 {% endblock %}

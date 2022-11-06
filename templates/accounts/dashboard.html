@@ -1,14 +1,28 @@
 {% extends 'index.html' %}
 {% block poll %}
+<section class="flex flex-col gap-8">
+<h1 class="text-5xl">
+  Dashboard
+</h1>
 {% if tickets %}
-  <ul>
+  <ul class="flex flex-row gap-8">
     {% for ticket in tickets %}
-      <li>
-        <a href="{% url 'byID_ticket' ticket.slug %}">{{ ticket.name }}</a>
+      <li class="flex flex-col justify-center content-center text-center gap-8">
+        <a href="{% url 'byID_ticket' ticket.slug %}">Name : {{ ticket.name }}</a>
+        <p>Projet : {{ ticket.product }}</p>
+        <p>Description : {{ ticket.description }}</p>
+        <p>Status :
+            {% if ticket.status == True %}
+                Ouvert
+            {% else%}
+                Fermé
+            {% endif %}
+        </p>
       </li>
     {% endfor %}
   </ul>
 {% else %}
   <p>No tickets yet.</p>
+</section>
 {% endif %}
 {% endblock %}

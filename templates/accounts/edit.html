@@ -1,27 +1,30 @@
 {% extends 'index.html' %}
 {% block poll %}
-
-<h1>
-    {{ user.username }}
-</h1>
-<form method="post">
-    {% csrf_token %}
-    <div>
-        <label for="username">Name</label>
-        <input type="text" name="username" id="username" value="{{ user.username }}">
-    </div>
-    <div>
-        <label for="email">Email</label>
-        <input type="text" name="email" id="email"  value="{{ user.email }}">
-    </div>
-    <div>
-        <label for="firstname">Firstname</label>
-        <input type="text" name="firstname" id="firstname"  value="{{ user.first_name }}">
-    </div>
-    <div>
-        <label for="lastname">Lastname</label>
-        <input type="text" name="lastname" id="lastname"  value="{{ user.last_name }}">
-    </div>
-    <input type="submit" value="Save">
-</form>
+<section class="block max-w-xs mx-auto ">
+<div class="flex flex-col gap-8 justify-center items-center">
+    <h1>
+        {{ user.username }}
+    </h1>
+    <form method="post" class="flex flex-col gap-8 justify-center content-center text-center">
+        {% csrf_token %}
+        <div class="form-group flex flex-col gap-2">
+            <label for="username">Name</label>
+            <input type="text" name="username" id="username" value="{{ user.username }}">
+        </div>
+        <div class="form-group flex flex-col gap-2">
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email"  value="{{ user.email }}">
+        </div>
+        <div class="form-group flex flex-col gap-2">
+            <label for="firstname">Firstname</label>
+            <input type="text" name="firstname" id="firstname"  value="{{ user.first_name }}">
+        </div>
+        <div class="form-group flex flex-col gap-2">
+            <label for="lastname">Lastname</label>
+            <input type="text" name="lastname" id="lastname"  value="{{ user.last_name }}">
+        </div>
+        <input type="submit" value="Save">
+    </form>
+</div>
+</section>
 {% endblock %}
