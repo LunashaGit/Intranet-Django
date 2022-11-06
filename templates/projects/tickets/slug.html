@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+{% block poll %}
+<div>
+    <a href="edit">
+        edit
+    </a>
+    <form action="delete/" method="post">
+        {% csrf_token %}
+        <input type="submit" value="delete">
+    </form>
+</div>
+<h1>
+    {{ ticket.name }}
+</h1>
+{% endblock %}

@@ -3,4 +3,15 @@
 <h1>
   Tickets
 </h1>
+{% if tickets %}
+  <ul>
+    {% for ticket in tickets %}
+      <li>
+        <a href="{{ ticket.slug }}">{{ ticket.name }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No projects yet.</p>
+{% endif %}
 {% endblock %}

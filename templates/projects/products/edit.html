@@ -9,14 +9,14 @@
 
     <div>
         <label for="name">Name</label>
-        <input type="text" name="name" value="{{ product.name }}">
+        <input type="text" name="name" id="name" value="{{ product.name }}">
     </div>
     <div>
         <label for="description">Description</label>
-        <input type="text" name="description" value="{{ product.product_description }}">
+        <input type="text" name="description" id="description"  value="{{ product.product_description }}">
     </div>
     <div>
-        <label for="category">Category</label>
+        <label for="category" id="category">Category</label>
         <select name="category">
             {% for category in categories %}
             <option value="{{ category.category_name }}">
