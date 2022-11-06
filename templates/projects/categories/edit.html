@@ -1,19 +1,22 @@
 {% extends 'index.html' %}
 {% block poll %}
-
-<h1>
-    {{ category.category_name }}
-</h1>
-<form method="post">
-    {% csrf_token %}
-    <div>
-        <label for="name">Name</label>
-        <input type="text" name="name" id="name" value="{{ category.category_name }}">
-    </div>
-    <div>
-        <label for="description">Description</label>
-        <input type="text" name="description" id="description" value="{{ category.category_description }}">
-    </div>
-    <input type="submit" value="Save">
-</form>
+<section class="block max-w-xs mx-auto ">
+<div class="flex flex-col gap-8">
+    <h1>
+        {{ category.category_name }}
+    </h1>
+    <form method="post" class="flex flex-col gap-8 justify-center content-center text-center">
+        {% csrf_token %}
+        <div  class="form-group flex flex-col gap-2">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" value="{{ category.category_name }}">
+        </div>
+        <div  class="form-group flex flex-col gap-2">
+            <label for="description">Description</label>
+            <input type="text" name="description" id="description" value="{{ category.category_description }}">
+        </div>
+        <input type="submit" value="Save">
+    </form>
+</div>
+</section>
 {% endblock %}

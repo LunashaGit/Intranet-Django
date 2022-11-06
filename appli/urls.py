@@ -23,7 +23,7 @@ import projects.views
 
 urlpatterns = [
     path("__reload__/", include("django_browser_reload.urls")),
-    path("admin/", admin.site.urls),
+    path("admin/", admin.site.urls, name="admin"),
     path("", intranet.views.index, name="index"),
     path("register/", account.views.register, name="register"),
     path("login/", account.views.login, name="login"),

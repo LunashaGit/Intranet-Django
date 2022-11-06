@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+{% block poll %}
+{% if tickets %}
+  <ul>
+    {% for ticket in tickets %}
+      <li>
+        <a href="{% url 'byID_ticket' ticket.slug %}">{{ ticket.name }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No tickets yet.</p>
+{% endif %}
+{% endblock %}

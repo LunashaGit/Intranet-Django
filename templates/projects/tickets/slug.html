@@ -1,15 +1,68 @@
 {% extends 'index.html' %}
 {% block poll %}
-<div>
-    <a href="edit">
-        edit
-    </a>
-    <form action="delete/" method="post">
-        {% csrf_token %}
-        <input type="submit" value="delete">
-    </form>
+<section class="block max-w-xs mx-auto my-12">
+    <div class="flex flex-row gap-8 justify-center items-center">
+        <a href="edit">
+            edit
+        </a>
+        <form action="delete/" method="post">
+            {% csrf_token %}
+            <input type="submit" value="delete">
+        </form>
+    </div>
+<div class="text-center flex flex-col gap-8">
+    <div class="flex flex-col gap-2">
+        <h2>
+        Name :
+        </h2>
+        <p>
+            {{ ticket.name }}
+        </p>
+    </div>
+    <div class="flex flex-col gap-2">
+        <h2>
+        Slug :
+        </h2>
+        <p>
+            {{ ticket.slug }}
+        </p>
+    </div>
+    <div class="flex flex-col gap-2">
+        <h2>
+            Description :
+        </h2>
+        <p>
+            {{ ticket.description }}
+        </p>
+    </div>
+    <div class="flex flex-col gap-2">
+        <h2>
+            User :
+        </h2>
+        <p>
+            {{ ticket.user }}
+        </p>
+    </div>
+    <div class="flex flex-col gap-2">
+        <h2>
+            Product :
+        </h2>
+        <p>
+            {{ ticket.product }}
+        </p>
+    </div>
+    <div class="flex flex-col gap-2">
+        <h2>
+            Status :
+        </h2>
+        <p>
+            {% if ticket.status == True %}
+                Ouvert
+            {% else%}
+                Fermé
+            {% endif %}
+        </p>
+    </div>
 </div>
-<h1>
-    {{ ticket.name }}
-</h1>
+</section>
 {% endblock %}

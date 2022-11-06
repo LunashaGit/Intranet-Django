@@ -1,17 +1,22 @@
 {% extends 'index.html' %}
 {% block poll %}
-<h1>
-  Category
+<section class="flex flex-col gap-8">
+<h1 class="text-5xl">
+  Categories
 </h1>
 {% if categories %}
-  <ul>
+    <ul class="flex flex-row gap-8">
     {% for category in categories %}
-      <li>
+      <li class="flex flex-col justify-center content-center text-center">
+        <img class="max-w-xs" src="/media/{{ category.category_image }}" alt="image">
         <a href="{{ category.slug }}">{{ category.category_name }}</a>
+        <p>Description : {{ category.category_description }}</p>
       </li>
     {% endfor %}
   </ul>
 {% else %}
   <p>No projects yet.</p>
 {% endif %}
+</section>
 {% endblock %}
+

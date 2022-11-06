@@ -1,17 +1,29 @@
 {% extends 'index.html' %}
 {% block poll %}
-<h1>
+<section class="flex flex-col gap-8">
+<h1 class="text-5xl">
   Tickets
 </h1>
 {% if tickets %}
-  <ul>
+  <ul class="flex flex-row gap-8">
     {% for ticket in tickets %}
-      <li>
+      <li class="flex flex-col justify-center content-center text-center">
         <a href="{{ ticket.slug }}">{{ ticket.name }}</a>
+        <p>Projet : {{ ticket.product }}</p>
+        <p>Utilisateur :{{ ticket.user }}</p>
+        <p>Desc : {{ ticket.description }}</p>
+        <p>Status :
+            {% if ticket.status == True %}
+                Ouvert
+            {% else%}
+                Fermé
+            {% endif %}
+        </p>
       </li>
     {% endfor %}
   </ul>
 {% else %}
   <p>No projects yet.</p>
 {% endif %}
+</section>
 {% endblock %}

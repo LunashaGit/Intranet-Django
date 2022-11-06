@@ -1,35 +1,46 @@
 {% extends 'index.html' %}
 {% block poll %}
-<section>
-    <form method="post">
+<section class="block max-w-xs mx-auto ">
+<div class="flex flex-col gap-8">
+    <h1 class="text-5xl">
+    Create Project
+    </h1>
+    <form method="post" class="flex flex-col gap-8 justify-center content-center text-center">
         {% csrf_token %}
-        <div class="form-group">
+        <div class="form-group flex flex-col gap-2">
             <label for="name">Name</label>
             <input type="text" name="name" class="form-control" id="name" placeholder="Category Name">
         </div>
-        <div class="form-group">
+        <div class="form-group flex flex-col gap-2">
             <label for="slug">Slug</label>
             <input type="text" name="slug" class="form-control" id="slug" placeholder="Slug">
         </div>
-        <div class="form-group">
+        <div class="form-group flex flex-col gap-2">
             <label for="description">Description</label>
             <input type="text" name="description" class="form-control" id="description" placeholder="Description">
         </div>
-        <select name="product">
-            {% for product in products %}
-            <option value="{{ product.name }}">
-                {{ product.name }}
-            </option>
-            {% endfor %}
-        </select>
-        <select name="user">
-            {% for user in users %}
-            <option value="{{ user.username }}">
-                {{ user.first_name }}
-            </option>
-            {% endfor %}
-        </select>
+        <div class="form-group flex flex-col gap-2">
+            <label for="product">Product</label>
+            <select name="product" id="product">
+                {% for product in products %}
+                <option value="{{ product.name }}">
+                    {{ product.name }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group flex flex-col gap-2">
+            <label for="user">User</label>
+            <select name="user" id="user">
+                {% for user in users %}
+                <option value="{{ user.username }}">
+                    {{ user.first_name }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
         <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </section>
+    </form>
+</div>
+</section>
 {% endblock %}

@@ -1,6 +1,7 @@
 {% extends 'index.html' %}
 {% block poll %}
-<div>
+<section class="block max-w-xs mx-auto my-12">
+<div class="flex flex-row gap-8 justify-center items-center">
     <a href="edit">
         edit
     </a>
@@ -9,7 +10,33 @@
         <input type="submit" value="delete">
     </form>
 </div>
-<h1>
-    {{ ticket.name }}
-</h1>
+<div class="text-center flex flex-col gap-8">
+    <img src="{{ category.category_image.url }}" alt="">
+
+    <div class="flex flex-col gap-2">
+        <h2>
+        Name :
+        </h2>
+        <p>
+            {{ category.category_name }}
+        </p>
+    </div>
+    <div class="flex flex-col gap-2">
+        <h2>
+        Slug :
+        </h2>
+        <p>
+            {{ category.slug }}
+        </p>
+    </div>
+    <div class="flex flex-col gap-2">
+        <h2>
+            Description :
+        </h2>
+        <p>
+            {{ category.category_description }}
+        </p>
+    </div>
+</div>
+</section>
 {% endblock %}

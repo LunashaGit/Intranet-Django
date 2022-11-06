@@ -1,17 +1,22 @@
 {% extends 'index.html' %}
 {% block poll %}
-<h1>
+<section class="flex flex-col gap-8">
+<h1 class="text-5xl">
   projects
 </h1>
 {% if products %}
-  <ul>
+  <ul class="flex flex-row gap-8">
     {% for product in products %}
-      <li>
+      <li class="flex flex-col justify-center content-center text-center">
+        <img class="max-w-xs" src="/media/{{ product.product_image }}" alt="image">
         <a href="{{ product.slug }}">{{ product.name }}</a>
+        <p>{{ product.category }}</p>
+        <p>{{ product.product_description }}</p>
       </li>
     {% endfor %}
   </ul>
 {% else %}
   <p>No projects yet.</p>
 {% endif %}
+</section>
 {% endblock %}

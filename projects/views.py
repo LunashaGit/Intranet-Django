@@ -183,6 +183,6 @@ def deleteCategory(request, slug):
 
 
 def dashboard(request):
+    tickets = Ticket.objects.filter(status=True, user=request.user).all()
 
-
-    return render(request, 'accounts/dashboard.html')
+    return render(request, 'accounts/dashboard.html', {"tickets": tickets})

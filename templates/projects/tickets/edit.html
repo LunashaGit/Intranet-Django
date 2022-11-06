@@ -1,47 +1,49 @@
 {% extends 'index.html' %}
 {% block poll %}
-
-<h1>
-    {{ product.name }}
-</h1>
-<form method="post">
-    {% csrf_token %}
-
-    <div>
-        <label for="name">Name</label>
-        <input type="text" name="name" id="name" value="{{ ticket.name }}">
-    </div>
-    <div>
-        <label for="description">Description</label>
-        <input type="text" name="description" id="description" value="{{ ticket.description }}">
-    </div>
-    <div>
-        <label for="product">Product</label>
-        <select name="product" id="product">
-            {% for product in products %}
-            <option value="{{ product }}">
-                {{ product }}
-            </option>
-            {% endfor %}
-        </select>
-    </div>
-    <div>
-        <label for="user">user</label>
-        <select name="user" id="user">
-            {% for user in users %}
-            <option value="{{ user.username }}">
-                {{ user.username }}
-            </option>
-            {% endfor %}
-        </select>
-    </div>
-    <div>
-        <label for="status">status</label>
-        <select name="status" id="status">
-            <option value="True">Open</option>
-            <option value="False">Closed</option>
-        </select>
-    </div>
-    <input type="submit" value="Save">
-</form>
+<section class="block max-w-xs mx-auto ">
+<div class="flex flex-col gap-8">
+    <h1>
+        {{ ticket.name }}
+    </h1>
+    <form method="post" class="flex flex-col gap-8 justify-center content-center text-center">
+        {% csrf_token %}
+        <div class="form-group flex flex-col gap-2">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" value="{{ ticket.name }}">
+        </div>
+        <div class="form-group flex flex-col gap-2">
+            <label for="description">Description</label>
+            <input type="text" name="description" id="description" value="{{ ticket.description }}">
+        </div>
+        <div class="form-group flex flex-col gap-2">
+            <label for="product">Product</label>
+            <select name="product" id="product">
+                {% for product in products %}
+                <option value="{{ product }}">
+                    {{ product }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group flex flex-col gap-2">
+            <label for="user">user</label>
+            <select name="user" id="user">
+                {% for user in users %}
+                <option value="{{ user.username }}">
+                    {{ user.username }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group flex flex-col gap-2">
+            <label for="status">status</label>
+            <select name="status" id="status">
+                <option value="True">Open</option>
+                <option value="False">Closed</option>
+            </select>
+        </div>
+        <input type="submit" value="Save">
+    </form>
+</div>
+</section>
 {% endblock %}
