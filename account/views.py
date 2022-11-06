@@ -28,6 +28,7 @@ def register(request):
         # Get form values
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
+        username = request.POST['username']
         email = request.POST['email']
         password = request.POST['password']
         password2 = request.POST['password2']
@@ -35,16 +36,16 @@ def register(request):
         # Check if passwords match
         if password == password2:
             # Check username
-            if User.objects.filter(username=email).exists():
+            if User.objects.filter(username=username).exists():
                 messages.error(request, 'That email is taken')
                 return redirect('register')
             else:
-                if User.objects.filter(email=email).exists():
+                if User.objects.filter(email=username).exists():
                     messages.error(request, 'That email is being used')
                     return redirect('register')
                 else:
                     # Looks good
-                    user = User.objects.create_user(username=email, password=password, email=email, first_name=first_name, last_name=last_name)
+                    user = User.objects.create_user(username=username, password=password, email=email, first_name=first_name, last_name=last_name)
                     # Login after register
                     # auth.login(request, user)
                     # messages.success(request, 'You are now logged in')
@@ -63,3 +64,21 @@ def logout(request):
 
     return redirect('index')
 
+def profile(request):
+    return render(request, 'accounts/index.html')
+
+def editProfile(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        email = request.POST['email']
+        firstname = request.POST['firstname']
+        lastname = request.POST['lastname']
+        if username == '':
+            messages.error(request, 'Please add a title')
+            return redirect('editProfile')
+        else:
+            user = User.objects.filter(username=username).update(username=username, email=email, first_name=firstname, last_name=lastname)
+            messages.success(request, 'User updated')
+            return redirect('index')
+
+    return render(request, 'accounts/edit.html')
