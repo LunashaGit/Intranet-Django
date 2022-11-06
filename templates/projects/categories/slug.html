@@ -1,7 +1,8 @@
 {% extends 'index.html' %}
 {% block poll %}
-<section class="block max-w-xs mx-auto my-12">
-<div class="flex flex-row gap-8 justify-center items-center p-4 bg-shrine-pink-100 shadow-lg shadow-black-500/40">
+<section class="block max-w-xs mx-auto my-12 p-4 bg-shrine-pink-100 shadow-lg shadow-black-500/40">
+{% if user.is_staff %}
+<div class="flex flex-row gap-8 justify-center items-center ">
     <a href="edit">
         edit
     </a>
@@ -10,6 +11,7 @@
         <input type="submit" value="delete">
     </form>
 </div>
+{% endif %}
 <div class="text-center flex flex-col gap-8">
     <div class="flex flex-col gap-2">
         <h1>

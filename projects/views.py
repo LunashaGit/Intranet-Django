@@ -7,6 +7,9 @@ from django.contrib.auth.models import User
 # Create your views here.
 
 def index(request,slug=None):
+    if request.user.is_authenticated == False:
+        return redirect('login')
+
     if slug is not None:
         try:
             product = Product.objects.get(slug=slug)
@@ -19,6 +22,12 @@ def index(request,slug=None):
         return render(request, 'projects/products/index.html', {"products": products})
 
 def create(request):
+    if request.user.is_authenticated == False:
+        return redirect('login')
+
+    if request.user.is_superuser == False:
+        return redirect('index')
+
     if request.method == 'POST':
         name = request.POST['name']
         description = request.POST['description']
@@ -38,6 +47,9 @@ def create(request):
     return render(request, 'projects/products/create.html', {"categories": categories})
 
 def editProject(request, slug):
+    if request.user.is_authenticated == False:
+        return redirect('login')
+
     if request.method == 'POST':
         name = request.POST['name']
         description = request.POST['description']
@@ -57,6 +69,12 @@ def editProject(request, slug):
         return render(request, 'projects/404.html')
 
 def deleteProject(request, slug):
+    if request.user.is_authenticated == False:
+        return redirect('login')
+
+    if request.user.is_superuser == False:
+        return redirect('index')
+
     try:
         product = Product.objects.get(slug=slug)
         product.delete()
@@ -66,6 +84,9 @@ def deleteProject(request, slug):
         return render(request, 'projects/404.html')
 
 def indexTickets(request, slug=None):
+    if request.user.is_authenticated == False:
+        return redirect('login')
+
     if slug is not None:
         try:
             ticket = Ticket.objects.get(slug=slug)
@@ -77,6 +98,12 @@ def indexTickets(request, slug=None):
         return render(request, 'projects/tickets/index.html', {"tickets": tickets})
 
 def createTicket(request):
+    if request.user.is_authenticated == False:
+        return redirect('login')
+
+    if request.user.is_superuser == False:
+        return redirect('index')
+
     if request.method == 'POST':
         name = request.POST['name']
         description = request.POST['description']
@@ -97,6 +124,9 @@ def createTicket(request):
     return render(request, 'projects/tickets/create.html', {"products": products, "users": users})
 
 def editTicket(request, slug):
+    if request.user.is_authenticated == False:
+        return redirect('login')
+
     if request.method == 'POST':
         name = request.POST['name']
         description = request.POST['description']
@@ -119,6 +149,12 @@ def editTicket(request, slug):
         return render(request, 'projects/404.html')
 
 def deleteTicket(request, slug):
+    if request.user.is_authenticated == False:
+        return redirect('login')
+
+    if request.user.is_superuser == False:
+        return redirect('index')
+
     try:
         ticket = Ticket.objects.get(slug=slug)
         ticket.delete()
@@ -128,6 +164,9 @@ def deleteTicket(request, slug):
         return render(request, 'projects/404.html')
 
 def indexCategories(request, slug=None):
+    if request.user.is_authenticated == False:
+        return redirect('login')
+
     if slug is not None:
         try:
             category = Category.objects.get(slug=slug)
@@ -139,6 +178,12 @@ def indexCategories(request, slug=None):
         return render(request, 'projects/categories/index.html', {"categories": categories})
 
 def createCategory(request):
+    if request.user.is_authenticated == False:
+        return redirect('login')
+
+    if request.user.is_superuser == False:
+        return redirect('index')
+
     if request.method == 'POST':
         category_name = request.POST['category_name']
         slug = request.POST['slug']
@@ -156,6 +201,9 @@ def createCategory(request):
     return render(request, 'projects/categories/create.html')
 
 def editCategory(request, slug):
+    if request.user.is_authenticated == False:
+        return redirect('login')
+
     if request.method == 'POST':
         name = request.POST['name']
         description = request.POST['description']
@@ -173,6 +221,12 @@ def editCategory(request, slug):
         return render(request, 'projects/404.html')
 
 def deleteCategory(request, slug):
+    if request.user.is_authenticated == False:
+        return redirect('login')
+
+    if request.user.is_superuser == False:
+        return redirect('index')
+
     try:
         category = Category.objects.get(slug=slug)
         category.delete()
@@ -183,6 +237,9 @@ def deleteCategory(request, slug):
 
 
 def dashboard(request):
+    if request.user.is_authenticated == False:
+        return redirect('login')
+
     tickets = Ticket.objects.filter(status=True, user=request.user).all()
 
     return render(request, 'accounts/dashboard.html', {"tickets": tickets})
