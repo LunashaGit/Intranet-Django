@@ -104,7 +104,7 @@ def editTicket(request, slug):
         user = User.objects.get(username=request.POST['user'])
         if name == '':
             messages.error(request, 'Please add a title')
-            return redirect('editProject')
+            return redirect('editTicket')
         else:
             ticket = Ticket.objects.filter(slug=slug).update(name=name, description=description, slug=slug, product=product, user=user)
             messages.success(request, 'Ticket updated')
@@ -121,14 +121,21 @@ def deleteTicket(request, slug):
     try:
         ticket = Ticket.objects.get(slug=slug)
         ticket.delete()
-        messages.success(request, 'Project deleted')
+        messages.success(request, 'Ticket deleted')
         return redirect('index')
     except:
         return render(request, 'projects/404.html')
 
-def indexCategories(request):
-    categories = Category.objects.all()
-    return render(request, 'projects/products/all_categories.html', {"categories": categories})
+def indexCategories(request, slug=None):
+    if slug is not None:
+        try:
+            category = Category.objects.get(slug=slug)
+            return render(request, 'projects/categories/slug.html', {"category": category})
+        except:
+            return render(request, 'projects/404.html')
+    else:
+        categories = Category.objects.all()
+        return render(request, 'projects/categories/index.html', {"categories": categories})
 
 def createCategory(request):
     if request.method == 'POST':
@@ -146,3 +153,29 @@ def createCategory(request):
             return redirect('index')
 
     return render(request, 'projects/categories/create.html')
+
+def editCategory(request, slug):
+    if request.method == 'POST':
+        name = request.POST['name']
+        description = request.POST['description']
+        if name == '':
+            messages.error(request, 'Please add a title')
+            return redirect('editCategory')
+        else:
+            category = Category.objects.filter(slug=slug).update(category_name=name, category_description=description)
+            messages.success(request, 'Category updated')
+            return redirect('index')
+    try:
+        category = Category.objects.get(slug=slug)
+        return render(request, 'projects/categories/edit.html', {"category": category})
+    except:
+        return render(request, 'projects/404.html')
+
+def deleteCategory(request, slug):
+    try:
+        category = Category.objects.get(slug=slug)
+        category.delete()
+        messages.success(request, 'Project deleted')
+        return redirect('index')
+    except:
+        return render(request, 'projects/404.html')

@@ -1,7 +1,17 @@
 {% extends 'index.html' %}
 {% block poll %}
 <h1>
-    Categories
+  Category
 </h1>
+{% if categories %}
+  <ul>
+    {% for category in categories %}
+      <li>
+        <a href="{{ category.slug }}">{{ category.category_name }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No projects yet.</p>
+{% endif %}
 {% endblock %}
-
