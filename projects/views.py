@@ -7,7 +7,8 @@ from django.contrib.auth.models import User
 # Create your views here.
 
 def index(request):
-    return render(request, 'projects/all.html')
+    products = Product.objects.all()
+    return render(request, 'projects/products/index.html', {"products": products})
 
 def create(request):
     if request.method == 'POST':
@@ -26,7 +27,7 @@ def create(request):
             return redirect('index')
 
     categories = Category.objects.all()
-    return render(request, 'projects/create.html', {"categories": categories})
+    return render(request, 'projects/products/create.html', {"categories": categories})
 
 def createCategory(request):
     if request.method == 'POST':
@@ -43,7 +44,7 @@ def createCategory(request):
             messages.success(request, 'Category created')
             return redirect('index')
 
-    return render(request, 'projects/createCategory.html')
+    return render(request, 'projects/categories/create.html')
 
 def createTicket(request):
     if request.method == 'POST':
@@ -63,6 +64,48 @@ def createTicket(request):
     products = Product.objects.all()
     users = User.objects.all()
 
-    return render(request, 'projects/createTicket.html', {"products": products, "users": users})
+    return render(request, 'projects/tickets/create.html', {"products": products, "users": users})
 
+def all_categories(request):
+    categories = Category.objects.all()
+    return render(request, 'projects/products/all_categories.html', {"categories": categories})
 
+def all_tickets(request):
+    tickets = Ticket.objects.all()
+    return render(request, 'projects/products/all_tickets.html', {"tickets": tickets})
+
+def byID_project(request, slug):
+    try:
+        product = Product.objects.get(slug=slug)
+        print(product)
+        return render(request, 'projects/products/slug.html', {"product": product})
+    except:
+        return render(request, 'projects/404.html')
+
+def editProject(request, slug):
+    if request.method == 'POST':
+        name = request.POST['name']
+        description = request.POST['description']
+        category = Category.objects.get(category_name=request.POST['category'])
+        if name == '':
+            messages.error(request, 'Please add a title')
+            return redirect('editProject')
+        else:
+            project = Product.objects.filter(slug=slug).update(name=name, product_description=description, slug=slug, category=category)
+            messages.success(request, 'Project updated')
+            return redirect('index')
+    try:
+        product = Product.objects.get(slug=slug)
+        categories = Category.objects.all()
+        return render(request, 'projects/products/edit.html', {"product": product, "categories": categories})
+    except:
+        return render(request, 'projects/404.html')
+
+def deleteProject(request, slug):
+    try:
+        product = Product.objects.get(slug=slug)
+        product.delete()
+        messages.success(request, 'Project deleted')
+        return redirect('index')
+    except:
+        return render(request, 'projects/404.html')

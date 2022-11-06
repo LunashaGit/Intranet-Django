@@ -1,0 +1,29 @@
+{% extends 'index.html' %}
+{% block poll %}
+
+<h1>
+    {{ product.name }}
+</h1>
+<form method="post">
+    {% csrf_token %}
+
+    <div>
+        <label for="name">Name</label>
+        <input type="text" name="name" value="{{ product.name }}">
+    </div>
+    <div>
+        <label for="description">Description</label>
+        <input type="text" name="description" value="{{ product.product_description }}">
+    </div>
+    <div>
+        <label for="category">Category</label>
+        <select name="category">
+            {% for category in categories %}
+            <option value="{{ category.category_name }}">
+                {{ category.category_name }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+        <input type="submit" value="Save">
+{% endblock %}
