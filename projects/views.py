@@ -102,11 +102,12 @@ def editTicket(request, slug):
         description = request.POST['description']
         product = Product.objects.get(name=request.POST['product'])
         user = User.objects.get(username=request.POST['user'])
+        status = request.POST['status']
         if name == '':
             messages.error(request, 'Please add a title')
             return redirect('editTicket')
         else:
-            ticket = Ticket.objects.filter(slug=slug).update(name=name, description=description, slug=slug, product=product, user=user)
+            ticket = Ticket.objects.filter(slug=slug).update(name=name, description=description, slug=slug, product=product, user=user, status=status)
             messages.success(request, 'Ticket updated')
             return redirect('index')
     try:
@@ -179,3 +180,9 @@ def deleteCategory(request, slug):
         return redirect('index')
     except:
         return render(request, 'projects/404.html')
+
+
+def dashboard(request):
+
+
+    return render(request, 'accounts/dashboard.html')

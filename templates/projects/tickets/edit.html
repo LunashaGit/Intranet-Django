@@ -35,6 +35,13 @@
             {% endfor %}
         </select>
     </div>
+    <div>
+        <label for="status">status</label>
+        <select name="status" id="status">
+            <option value="True">Open</option>
+            <option value="False">Closed</option>
+        </select>
+    </div>
     <input type="submit" value="Save">
 </form>
 {% endblock %}

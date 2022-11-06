@@ -28,6 +28,7 @@ urlpatterns = [
     path("register/", account.views.register, name="register"),
     path("login/", account.views.login, name="login"),
     path("logout/", account.views.logout, name="logout"),
+    path("dashboard/", projects.views.dashboard, name="dashboard"),
     path("create/", projects.views.create, name="create"),
     path("create_category/", projects.views.createCategory, name="create_category"),
     path("create_ticket/", projects.views.createTicket, name="create_ticket"),
