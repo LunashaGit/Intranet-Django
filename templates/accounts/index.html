@@ -1,12 +1,12 @@
 {% extends 'index.html' %}
 {% block poll %}
 {% if user.is_authenticated %}
-<section class="block max-w-xs mx-auto my-12">
-<div class="flex flex-col gap-8 justify-center items-center p-4 bg-shrine-pink-100 shadow-lg shadow-black-500/40">
+<section class="block max-w-xs mx-auto my-12 w-2/3">
+<div class="flex flex-col gap-8 justify-center items-center p-4 bg-shrine-pink-100 shadow-lg shadow-black-500/40 ">
     <h1 class="text-5xl">
         Profile
     </h1>
-    <a href="edit/">Edit</a>
+    <a href="edit/" class="bg-blue-500 hover:bg-blue-700 text-white font-bold my-4 py-2 px-4 rounded">Edit</a>
     <ul class="text-center flex flex-col gap-8">
         <li>
             <img class="max-w-xxs max-h-xxs block mx-auto" src="/media/profile.webp" alt="image">
